@@ -17,7 +17,12 @@ class form(QWidget):
         self.button.clicked.connect(self.click)
         self.color = QColor(255, 255, 0)
 
+        self.flag = 0
+
     def paintEvent(self, event):
+        if not self.flag:
+            return
+
         qp = QPainter()
         qp.begin(self)
 
@@ -35,6 +40,7 @@ class form(QWidget):
         qp.drawEllipse(QPointF(500, 200), self.size_2, self.size_2)
 
     def click(self):
+        self.flag = 1
         self.update()
 
 
